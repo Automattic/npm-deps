@@ -22,7 +22,7 @@ module.exports = function(app) {
     }
     
     if (app.output) {
-      fs.writeFileSync(app.output, JSON.stringify(pkgJson, null, 2), 'utf-8');
+      fs.writeFileSync(app.output, JSON.stringify(pkgJson, null, 2) + '\n', 'utf-8');
     } else {
       console.log(JSON.stringify(pkgJson, null, 2));
     }
