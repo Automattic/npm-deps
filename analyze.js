@@ -1,7 +1,7 @@
 var dive = require('dive')
-  , fs = require('graceful-fs')
-  , path = require('path')
-  , util = require('./util');
+var fs = require('graceful-fs')
+var path = require('path')
+var util = require('./util');
 
 function analyze(options, callback) {
   var cwd = process.cwd();
