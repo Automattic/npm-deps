@@ -11,7 +11,7 @@ place".
 ## Example
 
     $ cd my_cool_project
-    $ npm-deps > package.json
+    $ npm-deps -o package.json
 
 ## Installation
 
@@ -19,9 +19,10 @@ place".
 
 ## Command line options
 
-    -h, --help     output usage information
-    -V, --version  output the version number
-    -s, --silent   do not print out warnings
+    -h, --help           output usage information
+    -V, --version        output the version number
+    -s, --silent         do not print out warnings
+    -o, --output [file]  output to a file
 
 ## Conflicts
 
