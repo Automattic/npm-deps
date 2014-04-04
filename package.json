@@ -1,0 +1,19 @@
+{
+  "name": "npm-deps",
+  "version": "0.1.0",
+  "description": "Merges dependencies from multiple package.json files in subdirectories.",
+  "keywords": ["package.json", "npm", "dependencies", "recursive", "subdirectories"],
+  "main": "index.js",
+  "author": "Automattic, Inc.",
+  "repository": "git@github.com:Automattic/npm-deps.git",
+  "license": "BSD",
+  "dependencies": {
+    "dive": "0.3.0",
+    "ansi": "0.1.2",
+    "graceful-fs": "2.0.3",
+    "commander": "2.2.0"
+  },
+  "bin": {
+    "npm-deps": "./bin/npm-deps"
+  }
+}

@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var analyze = require('../analyze');
+var output = require('../output');
+var app = require('commander');
+var fs = require('fs');
+var path = require('path');
+
+app
+  .version(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf-8')).version)
+  .option('-s, --silent', 'do not print out warnings')
+  .parse(process.argv);
+
+analyze({ silent: app.silent }, output);
+
