@@ -5,17 +5,17 @@ nested `package.json` files, and merges all the dependencies together in a
 single `package.json` file that is outputted to stdout.
 
 If the current directory hosts a `package.json` file, it's used as a template
-to produce the final `package.json` file, so that `npm-deps(1)` can be used in
-place.
-
-## Installation
-
-    $ npm install -g npm-deps
+to produce the final `package.json` file, so that `npm-deps(1)` can be used "in
+place".
 
 ## Example
 
     $ cd my_cool_project
     $ npm-deps > package.json
+
+## Installation
+
+    $ npm install -g npm-deps
 
 ## Command line options
 
