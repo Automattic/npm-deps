@@ -9,7 +9,8 @@ var path = require('path');
 app
   .version(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf-8')).version)
   .option('-s, --silent', 'do not print out warnings')
+  .option('-o, --output [file]', 'output to a file')
   .parse(process.argv);
 
-analyze({ silent: app.silent }, output);
+analyze({ silent: app.silent }, output(app));
 
