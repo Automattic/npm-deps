@@ -8,6 +8,10 @@ If the current directory hosts a `package.json` file, it's used as a template
 to produce the final `package.json` file, so that `npm-deps(1)` can be used in
 place.
 
+## Installation
+
+    $ npm install -g npm-deps
+
 ## Example
 
     $ cd my_cool_project
