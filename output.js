@@ -11,7 +11,7 @@ module.exports = function(app) {
     }
     pkgJson.dependencies = {};
     pkgJson.devDependencies = {};
-  
+
     for (var name in deps) {
       var dep = deps[name];
       if (dep.type == 'development') {
@@ -20,11 +20,11 @@ module.exports = function(app) {
         pkgJson.dependencies[name] = dep.version;
       }
     }
-    
+
     if (app.output) {
       fs.writeFileSync(app.output, JSON.stringify(pkgJson, null, 2) + '\n', 'utf-8');
     } else {
       console.log(JSON.stringify(pkgJson, null, 2));
     }
-  }
-}
+  };
+};
