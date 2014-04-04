@@ -1,6 +1,6 @@
-var dive = require('dive')
-var fs = require('graceful-fs')
-var path = require('path')
+var dive = require('dive');
+var fs = require('graceful-fs');
+var path = require('path');
 var util = require('./util');
 
 function analyze(options, callback) {
