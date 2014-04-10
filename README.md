@@ -29,6 +29,22 @@ place".
 `npm-deps(1)` will warn you about any potential conflicts of the versions
 declared in the multiple package.json files
 
+## Annoying `package.json` git changes?
+
+You will likely already have a root `package.json` file, and
+`npm-deps(1)` will overwrite the exisiting file which may be annoying
+when using `git add`, `git status`, etc.
+
+One suggestion for this is to make the `package.json` file [immune
+to version control changes][git-ignore], like so:
+
+``` bash
+$ git update-index --assume-unchanged package.json
+```
+
+From then on, changes to the `package.json` file will not be considered
+by `git`.
+
 ## License
 
 The MIT License (MIT)
@@ -52,3 +68,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+[git-ignore]: http://blog.pagebakers.nl/2009/01/29/git-ignoring-changes-in-tracked-files/
