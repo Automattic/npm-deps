@@ -17,10 +17,10 @@ function analyze(options, callback) {
     if (err) return;
 
     var rel = path.relative(cwd, dir);
-    console.error(rel);
 
     // don't process any `node_modules` directories
-    if ('node_modules' === path.basename(dir)) {
+    var nodeModules = 'node_modules';
+    if (nodeModules === rel.substring(0, nodeModules.length)) {
       util.log(dir, 'skipping `node_modules` directory');
       return;
     }
@@ -35,10 +35,10 @@ function analyze(options, callback) {
           var data = JSON.parse(json);
 
           // Extract dependencies
-          addDependencies(data.dependencies, path.relative(cwd, dir), 'production');
+          addDependencies(data.dependencies, rel, 'production');
 
           // Extract development dependencies
-          addDependencies(data.devDependencies, path.relative(cwd, dir), 'development');
+          addDependencies(data.devDependencies, rel, 'development');
 
           --pending;
           checkReady();
