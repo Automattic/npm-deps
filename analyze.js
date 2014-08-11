@@ -1,5 +1,5 @@
-var dive = require('dive');
 var fs = require('graceful-fs');
+var dive = require('dive');
 var path = require('path');
 var util = require('./util');
 
@@ -19,7 +19,7 @@ function analyze(options, callback) {
       return;
     }
 
-    // Check for existance of package.json and read it
+    // Check for existence of package.json and read it
     var pkgjson = path.join(dir, 'package.json');
     pending++;
     fs.exists(pkgjson, function(exists) {
