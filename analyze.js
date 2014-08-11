@@ -15,7 +15,10 @@ function analyze(options, callback) {
 
   function eachDir(err, dir) {
     if (err) return;
-    if (dir.match(/node_modules/)) {
+
+    // don't process any `node_modules` directories
+    if ('node_modules' === path.basename(dir)) {
+      util.log(dir, 'skipping `node_modules` directory');
       return;
     }
 
