@@ -3,14 +3,11 @@
 var analyze = require('../analyze');
 var output = require('../output');
 var app = require('commander');
-var fs = require('fs');
-var path = require('path');
 
 app
-  .version(JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'package.json'), 'utf-8')).version)
+  .version(require('../package.json').version)
   .option('-s, --silent', 'do not print out warnings')
   .option('-o, --output [file]', 'output to a file')
   .parse(process.argv);
 
 analyze({ silent: app.silent }, output(app));
-
