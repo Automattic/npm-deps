@@ -16,6 +16,9 @@ function analyze(options, callback) {
   function eachDir(err, dir) {
     if (err) return;
 
+    var rel = path.relative(cwd, dir);
+    console.error(rel);
+
     // don't process any `node_modules` directories
     if ('node_modules' === path.basename(dir)) {
       util.log(dir, 'skipping `node_modules` directory');
