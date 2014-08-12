@@ -1,8 +1,14 @@
 {
   "name": "npm-deps",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Merges dependencies from multiple package.json files in subdirectories.",
-  "keywords": ["package.json", "npm", "dependencies", "recursive", "subdirectories"],
+  "keywords": [
+    "package.json",
+    "npm",
+    "dependencies",
+    "recursive",
+    "subdirectories"
+  ],
   "main": "index.js",
   "author": "Automattic, Inc.",
   "repository": "git@github.com:Automattic/npm-deps.git",

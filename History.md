@@ -1,4 +1,12 @@
 
+0.1.2 / 2014-08-11
+==================
+
+ * analyze: don't process any `node_modules` directories
+ * output: use "graceful-fs", for consistency
+ * bin: use require() to load package.json version
+ * README: add note about `git update-index`
+
 0.1.1 / 2014-04-03
 ==================
 
