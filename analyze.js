@@ -1,7 +1,7 @@
 var fs = require('graceful-fs');
 var dive = require('dive');
 var path = require('path');
-var util = require('./util');
+var log = require('./log');
 
 function analyze(options, callback) {
   var cwd = process.cwd();
@@ -21,7 +21,7 @@ function analyze(options, callback) {
     // don't process any `node_modules` directories
     var nodeModules = 'node_modules';
     if (nodeModules === rel.substring(0, nodeModules.length)) {
-      util.log(dir, 'skipping `node_modules` directory');
+      log.verbose('analyze', 'skipping `node_modules` directory: %s', dir);
       return;
     }
 
@@ -63,7 +63,7 @@ function analyze(options, callback) {
         // check for inconsistent dependency versions.
         if (result[dep].version != version) {
           if (!options.silent) {
-            util.warn(dir, 'inconsistent dependency version ' + dep + '@' + version);
+            log.warn('analyze', '%s: inconsistent dependency version %s@%s', dir, dep, version);
           }
         } 
         // check if the same dep is used on dev and production, if so

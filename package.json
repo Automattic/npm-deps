@@ -14,10 +14,11 @@
   "repository": "git@github.com:Automattic/npm-deps.git",
   "license": "BSD",
   "dependencies": {
+    "commander": "2.2.0",
     "dive": "0.3.0",
-    "ansi": "0.1.2",
-    "graceful-fs": "2.0.3",
-    "commander": "2.2.0"
+    "graceful-fs": "3.0.2",
+    "npmenv": "0.0.1",
+    "npmlog": "~0.1.1"
   },
   "bin": {
     "npm-deps": "./bin/npm-deps"
