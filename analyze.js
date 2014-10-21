@@ -10,7 +10,6 @@ function analyze(options, callback) {
   var pending = 0;
 
   // Iterate through all directories
-  eachDir(null, cwd);
   dive(cwd, { directories: true, files: false }, eachDir, whenDone);
 
   function eachDir(err, dir) {

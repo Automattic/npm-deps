@@ -1,3 +1,8 @@
+0.3.0 / 2014-08-20
+==================
+
+ * Read a `package.json` template from stdin to allow the root `package.json`
+   to be ignored in version control
 
 0.2.0 / 2014-08-14
 ==================

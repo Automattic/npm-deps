@@ -1,17 +1,19 @@
 # npm-deps(1)
 
-`npm-deps(1)` is a nifty little script that scans subdirectories searching for 
-nested `package.json` files, and merges all the dependencies together in a 
+`npm-deps(1)` is a nifty little script that scans subdirectories searching for
+nested `package.json` files, and merges all the dependencies together in a
 single `package.json` file that is outputted to stdout.
 
-If the current directory hosts a `package.json` file, it's used as a template
-to produce the final `package.json` file, so that `npm-deps(1)` can be used "in
-place".
+A base template passed through standard input is used to produce the root
+`package.json` file. This allows `package.json` to be ignored by version
+control systems, which conflict with auto-generated files. Base package
+attributes, like name and version, can be stored in a separate file such as
+`package-base.json`, and kept in version control.
 
 ## Example
 
     $ cd my_cool_project
-    $ npm-deps -o package.json
+    $ npm-deps < package-base.json > package.json
 
 ## Installation
 
@@ -28,22 +30,6 @@ place".
 
 `npm-deps(1)` will warn you about any potential conflicts of the versions
 declared in the multiple package.json files
-
-## Annoying `package.json` git changes?
-
-You will likely already have a root `package.json` file, and
-`npm-deps(1)` will overwrite the exisiting file which may be annoying
-when using `git add`, `git status`, etc.
-
-One suggestion for this is to make the `package.json` file [immune
-to version control changes][git-ignore], like so:
-
-``` bash
-$ git update-index --assume-unchanged package.json
-```
-
-From then on, changes to the `package.json` file will not be considered
-by `git`.
 
 ## License
 

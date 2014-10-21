@@ -1,30 +1,42 @@
 var fs = require('graceful-fs');
 var path = require('path');
+var concat = require('concat-stream');
 
-module.exports = function(app) {
-  return function output(deps) {
+function getBasePackage(callback) {
+  var write = concat(function(data) {
     var pkgJson;
     try {
-      pkgJson = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
+      pkgJson = JSON.parse(data);
     } catch (e) {
       pkgJson = {};
     }
-    pkgJson.dependencies = {};
-    pkgJson.devDependencies = {};
 
-    for (var name in deps) {
-      var dep = deps[name];
-      if (dep.type == 'development') {
-        pkgJson.devDependencies[name] = dep.version;
-      } else {
-        pkgJson.dependencies[name] = dep.version;
+    callback(pkgJson);
+  });
+
+  process.stdin.pipe(write);
+}
+
+module.exports = function(app) {
+  return function output(deps) {
+    getBasePackage(function(pkgJson) {
+      pkgJson.dependencies = {};
+      pkgJson.devDependencies = {};
+
+      for (var name in deps) {
+        var dep = deps[name];
+        if (dep.type == 'development') {
+          pkgJson.devDependencies[name] = dep.version;
+        } else {
+          pkgJson.dependencies[name] = dep.version;
+        }
       }
-    }
 
-    if (app.output) {
-      fs.writeFileSync(app.output, JSON.stringify(pkgJson, null, 2) + '\n', 'utf-8');
-    } else {
-      console.log(JSON.stringify(pkgJson, null, 2));
-    }
+      if (app.output) {
+        fs.writeFileSync(app.output, JSON.stringify(pkgJson, null, 2) + '\n', 'utf-8');
+      } else {
+        console.log(JSON.stringify(pkgJson, null, 2));
+      }
+    });
   };
 };
