@@ -2,7 +2,7 @@ var fs = require('graceful-fs');
 var path = require('path');
 var concat = require('concat-stream');
 
-function getBasePackage(err, callback) {
+function getBasePackage(callback) {
   if (process.stdin.isTTY) {
     callback(null, {});
   } else {
