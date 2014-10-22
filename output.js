@@ -15,7 +15,7 @@ function getBasePackage(err, callback) {
         pkgJson = {};
       }
 
-      callback(pkgJson);
+      callback(null, pkgJson);
     });
 
     process.stdin.pipe(write);
@@ -24,7 +24,8 @@ function getBasePackage(err, callback) {
 
 module.exports = function(app) {
   return function output(deps) {
-    getBasePackage(function(pkgJson) {
+    getBasePackage(function(err, pkgJson) {
+      if (err) throw err;
       if (!pkgJson.dependencies) pkgJson.dependencies = {};
       if (!pkgJson.devDependencies) pkgJson.devDependencies = {};
 
