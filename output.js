@@ -20,8 +20,8 @@ function getBasePackage(callback) {
 module.exports = function(app) {
   return function output(deps) {
     getBasePackage(function(pkgJson) {
-      pkgJson.dependencies = {};
-      pkgJson.devDependencies = {};
+      if (!pkgJson.dependencies) pkgJson.dependencies = {};
+      if (!pkgJson.devDependencies) pkgJson.devDependencies = {};
 
       for (var name in deps) {
         var dep = deps[name];
