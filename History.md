@@ -1,4 +1,9 @@
 
+0.3.2 / 2014-10-22
+==================
+
+ * output: just pass an empty object if not piping into stdin
+
 0.3.1 / 2014-10-21
 ==================
 

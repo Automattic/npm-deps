@@ -1,6 +1,6 @@
 {
   "name": "npm-deps",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Merges dependencies from multiple package.json files in subdirectories.",
   "keywords": [
     "package.json",
