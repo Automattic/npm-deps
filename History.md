@@ -1,3 +1,9 @@
+
+0.3.1 / 2014-10-21
+==================
+
+  * output: only create new "dependencies" and "devDependencies" objects when there wasn't one read from stdin
+
 0.3.0 / 2014-08-20
 ==================
 
