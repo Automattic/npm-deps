@@ -2,19 +2,24 @@ var fs = require('graceful-fs');
 var path = require('path');
 var concat = require('concat-stream');
 
-function getBasePackage(callback) {
-  var write = concat(function(data) {
-    var pkgJson;
-    try {
-      pkgJson = JSON.parse(data);
-    } catch (e) {
-      pkgJson = {};
-    }
+function getBasePackage(err, callback) {
+  if (process.stdin.isTTY) {
+    callback(null, {});
+  } else {
+    // piping
+    var write = concat(function(data) {
+      var pkgJson;
+      try {
+        pkgJson = JSON.parse(data);
+      } catch (e) {
+        pkgJson = {};
+      }
 
-    callback(pkgJson);
-  });
+      callback(pkgJson);
+    });
 
-  process.stdin.pipe(write);
+    process.stdin.pipe(write);
+  }
 }
 
 module.exports = function(app) {
