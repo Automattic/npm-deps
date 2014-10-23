@@ -1,4 +1,9 @@
 
+0.3.5 / 2014-10-23
+==================
+
+ * output: support reading in the output filename
+
 0.3.4 / 2014-10-22
 ==================
 
