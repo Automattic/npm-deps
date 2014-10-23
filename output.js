@@ -4,10 +4,10 @@ var concat = require('concat-stream');
 
 function getBasePackage(filename, callback) {
   var stream;
-  if (!process.stdin.isTTY) {
-    stream = process.stdin;
-  } else if (filename) {
+  if (filename) {
     stream = fs.createReadStream(filename);
+  } else if (!process.stdin.isTTY) {
+    stream = process.stdin;
   }
 
   if (stream) {
