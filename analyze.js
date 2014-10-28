@@ -27,33 +27,32 @@ function analyze(options, callback) {
     // Check for existence of package.json and read it
     var pkgjson = path.join(dir, 'package.json');
     pending++;
-    fs.exists(pkgjson, function(exists) {
-      if (exists) {
-        fs.readFile(pkgjson, 'utf-8', function(err, json) {
-          if (err) throw err;
-          var data = JSON.parse(json);
-
-          // Extract dependencies
-          addDependencies(data.dependencies, rel, 'production');
-
-          // Extract development dependencies
-          addDependencies(data.devDependencies, rel, 'development');
-
+    fs.readFile(pkgjson, 'utf-8', function(err, json) {
+      if (err) {
+        if (err.code == 'ENOENT') {
           --pending;
-          checkReady();
-        })
-      } else {
-        --pending;
-        checkReady();
+          return checkReady();
+        }
+        throw err;
       }
-    })
+      var data = JSON.parse(json);
+
+      // Extract dependencies
+      addDependencies(data.dependencies, rel, 'production');
+
+      // Extract development dependencies
+      addDependencies(data.devDependencies, rel, 'development');
+
+      --pending;
+      checkReady();
+    });
   }
 
   function addDependencies(deps, dir, type) {
     if (!deps) {
       return;
     }
-    for (dep in deps) {
+    for (var dep in deps) {
       var version = deps[dep];
       // Try to add dependencies to root directory
       if (!result[dep]) {
@@ -64,7 +63,7 @@ function analyze(options, callback) {
           if (!options.silent) {
             log.warn('analyze', '%s: inconsistent dependency version %s@%s', dir, dep, version);
           }
-        } 
+        }
         // check if the same dep is used on dev and production, if so
         // make it sure it's listed as a production dep
         if ((type == 'production') && (result[dep].type == 'development')) {
