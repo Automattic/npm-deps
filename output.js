@@ -42,14 +42,13 @@ module.exports = function(app) {
         }
       }
 
-      var output;
-      if (app.output) {
-        output = fs.createWriteStream(app.output);
-      } else {
-        output = process.stdout;
-      }
+      var json = JSON.stringify(pkgJson, null, 2) + '\n';
 
-      output.end(JSON.stringify(pkgJson, null, 2) + '\n');
+      if (app.output) {
+        fs.writeFileSync(app.output, json);
+      } else {
+        process.stdout.write(json);
+      }
     });
   };
 };
