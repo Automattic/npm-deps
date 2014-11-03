@@ -1,4 +1,9 @@
 
+0.3.7 / 2014-11-03
+==================
+
+  * Handle file output and stdout end cases separately
+
 0.3.6 / 2014-10-23
 ==================
 
