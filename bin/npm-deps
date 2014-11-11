@@ -4,10 +4,16 @@ var analyze = require('../analyze');
 var output = require('../output');
 var app = require('commander');
 
+function collect(val, memo) {
+  memo.push(val);
+  return memo;
+}
+
 app
   .version(require('../package.json').version)
   .option('-s, --silent', 'do not print out warnings')
   .option('-o, --output [file]', 'output to a file')
+  .option('--exclude [prefix]', 'exclude package.json files with the specified path prefix', collect, [])
   .parse(process.argv);
 
-analyze({ silent: app.silent }, output(app));
+analyze({ silent: app.silent, excludePrefixes: app.exclude }, output(app));

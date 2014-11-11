@@ -17,12 +17,18 @@ function analyze(options, callback) {
 
     var rel = path.relative(cwd, dir);
 
-    // don't process any `node_modules` directories
-    var nodeModules = 'node_modules';
-    if (nodeModules === rel.substring(0, nodeModules.length)) {
-      log.verbose('analyze', 'skipping `node_modules` directory: %s', dir);
-      return;
-    }
+    // skip excluded directories (automatically exclude node_modules)
+    var excludePrefixes = options.excludePrefixes || [];
+    excludePrefixes.push('node_modules/');
+    var should_include = excludePrefixes.every(function(prefix) {
+      if (prefix === rel.substring(0, prefix.length)) {
+        log.verbose('analyze', 'skipping `%s` directory: %s', prefix, dir);
+        return false;
+      } else {
+        return true;
+      }
+    });
+    if (!should_include) return;
 
     // Check for existence of package.json and read it
     var pkgjson = path.join(dir, 'package.json');
