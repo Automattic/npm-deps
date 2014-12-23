@@ -16,7 +16,7 @@ function getBasePackage(filename, callback) {
       try {
         pkgJson = JSON.parse(data);
       } catch (e) {
-        pkgJson = {};
+        callback(new Error('Input is not valid json'), null);
       }
       callback(null, pkgJson);
     });
