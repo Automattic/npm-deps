@@ -5,6 +5,9 @@ var concat = require('concat-stream');
 function getBasePackage(filename, callback) {
   var stream;
   if (filename) {
+    if (!fs.existsSync(filename)) {
+      fs.closeSync(fs.openSync(filename, 'w'));
+    }
     stream = fs.createReadStream(filename);
   } else if (!process.stdin.isTTY) {
     stream = process.stdin;
