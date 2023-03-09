@@ -18,8 +18,7 @@ function analyze(options, callback) {
     var rel = path.relative(cwd, dir);
 
     // don't process any `node_modules` directories
-    var nodeModules = 'node_modules';
-    if (nodeModules === rel.substring(0, nodeModules.length)) {
+    if (rel.includes('node_modules')) {
       log.verbose('analyze', 'skipping `node_modules` directory: %s', dir);
       return;
     }
