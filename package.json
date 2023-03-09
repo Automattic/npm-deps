@@ -17,7 +17,7 @@
     "commander": "2.2.0",
     "concat-stream": "1.4.6",
     "dive": "0.3.0",
-    "graceful-fs": "3.0.2",
+    "graceful-fs": "^4.0.0",
     "npmenv": "0.0.1",
     "npmlog": "~0.1.1"
   },
