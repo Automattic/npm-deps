@@ -15,7 +15,7 @@
   "license": "BSD",
   "dependencies": {
     "commander": "2.2.0",
-    "concat-stream": "1.4.6",
+    "concat-stream": "1.4.11",
     "dive": "0.3.0",
     "graceful-fs": "3.0.2",
     "npmenv": "0.0.1",
